@@ -1,4 +1,5 @@
 #include "monitor.h"
+#include <stdlib.h>
 
 void monitor_init(BufferMonitor *buf, int size)
 {
@@ -13,7 +14,7 @@ void monitor_init(BufferMonitor *buf, int size)
     pthread_cond_init(&buf->not_empty, NULL);
 }
 
-void monitor_put(BufferMonitor *buf, Item item)
+void monitor_put(BufferMonitor *buf, Item item, FILE *file)
 {
     pthread_mutex_lock(&buf->lock);
 
@@ -26,9 +27,12 @@ void monitor_put(BufferMonitor *buf, Item item)
     buf->in = (buf->in + 1) % buf->capacity;
     buf->count++;
 
+    printf("[IN BUFFOR] %c nr %d put in buffor\n", item.type, item.id);
+    fprintf(file, "[IN BUFFOR] %c nr %d put in buffor\n", item.type, item.id);
+
     pthread_cond_signal(&buf->not_empty);
 
-    pthread_mutex_ulock(&buf->lock);
+    pthread_mutex_unlock(&buf->lock);
 }
 
 Item monitor_get(BufferMonitor *buf)

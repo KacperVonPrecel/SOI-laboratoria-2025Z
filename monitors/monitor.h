@@ -14,6 +14,6 @@ typedef struct {
 } BufferMonitor;
 
 void monitor_init(BufferMonitor *buf, int size);
-void monitor_put(BufferMonitor *buf, Item item);
+void monitor_put(BufferMonitor *buf, Item item, FILE *file);
 Item monitor_get(BufferMonitor *buf);
 void monitor_destroy(BufferMonitor *buf);
