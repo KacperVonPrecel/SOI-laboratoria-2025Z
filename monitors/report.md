@@ -1,19 +1,19 @@
-# SOI Zadanie 3 - semafory
+# SOI Zadanie 4 - semafory
 # Raport autorstwa Kacpra Skrodzkiego
 
 ## Wstęp
 
-W ramach trzeciego zadania należało utworzyć czterech producentów i trzech konsumentów korzystających z czterech buforów, których pracę należy zsynchronizować przy pomocy semaforów.
+W ramach czwartego zadania należało utworzyć czterech producentów i trzech konsumentów korzystających z czterech buforów, których pracę należy zsynchronizować przy pomocy monitorów. Te zadanie jest rozszerzeniem poprzedniego zadania z semaforami.
 
 ## Omówienie rozwiązania
 
-Aby móc wprowadzić synchronizację do dostępu do buforów należało wprowadzić po trzy semafory _(implementacja semafora z biblioteki <semaphore.h>)_ dla każdego bufora - _mutex_, _full_ i _empty_. Pierwszy z nich, _mutex_, pozwalał na dokonywanie operacji dodania lub usunięcia z bufora. Inicjalizowany z wartością jeden, gwarantował poprawność obsługi sekcji krytycznej.
+Aby móc wprowadzić synchronizację do dostępu do buforów należało wprowadzić strukturę monitora _BufferMonitor_ _(implementacja elementów monitora z biblioteki <pthread.h>)_. Każdy monitor posiada __locka__ _(mutex)_ oraz dwa sygnały kontrolne - __not_full__ i __not_empty__.
 
-Semafory _full_ i _empty_ przetrzymują informację o tym, ile jest zajętych oraz pustych miejsc w buforze. To one determinują czy producent może w ogóle coś dodać oraz czy też konsument coś pobrać z bufora. Dzięki tym semaforom jest kontrolowany stan danego bufora, zabezpiecza przed przepełnieniem albo pobieraniem danych, które w ogóle nie istnieją.
+Sygnały __not_full__ i __not_empty__ kontrolują limity zdefiniowanego bufora. Sygnał not_full ma informować producentów, że w buforze jest miejsce na ich produkt. Za to sygnał not_empty informuje konsumentów, że jest składnik do pobrania. Sygnały te są wysyłane na krzyż przez producentów i konsumentów w ramach funkcji __monitor_put()__ i __monitor_get()__.
 
 ## Testy implementacji - symulacja
 
-Aby przetestować poprawność implementacji semaforów stworzyłem program, który symuluje pracę wszystkich producentów i konsumentów przez okres 10 sekund. Wyniki zostały zapisane w plikach __result_1.txt__ i __result_2.txt__. Każda z symulacji została przeprowadzona przy innych rozmiarach buforów (30 oraz 3 elementy). Dodatkowo, wątki konsumentów były jako pierwsze zainicjowane, aby w każdej symulacji przetestować, czy konsumenci nie biorą danych z pustych buforów. Do utworzenia osobnych wątków wykorzystałem bibliotekę <pthread.h>.
+Aby przetestować poprawność implementacji monitorów stworzyłem program, który symuluje pracę wszystkich producentów i konsumentów przez okres 10 sekund. Wyniki zostały zapisane w plikach __result_1.txt__ i __result_2.txt__. Każda z symulacji została przeprowadzona przy innych rozmiarach buforów (30 oraz 3 elementy). Dodatkowo, wątki konsumentów były jako pierwsze zainicjowane, aby w każdej symulacji przetestować, czy konsumenci nie biorą danych z pustych buforów. Do utworzenia osobnych wątków wykorzystałem bibliotekę <pthread.h>.
 
 ### Pierwsza symulacja
 
@@ -26,7 +26,7 @@ W ramach pierwszej symulacji sprawdziłem, czy synchronizacja przebiega pomyśln
 
 W przypadku pierwszej symulacji można zauważyć, że prawie wszystkie warunki są spełnione. Składniki nie są dublowane, czyli nie było dwóch konsumentów naraz w sekcji krytycznej - można to ocenić śledząc produkcję i zużycie _ciasta_.
 
-Każdy ze składników jest wybierany zgdonie z FIFO -> następne pierogi są robione ze starszymi produktami, np.: _Making pierog with M; (dough id: 8, filling id 3)_, gdzie w buforze są mięsa o id: 4, 5, 6, 7, 8.
+Każdy ze składników jest wybierany zgdonie z FIFO -> następne pierogi są robione ze starszymi produktami, np.: _Making pierog with M; (dough id: 9, filling id 3)_, gdzie w buforze są mięsa o id: 4, 5, 6, 7, 8.
 
 Dodatkowo nie występuje zagłodzenie. Pierogi robią się prawie naprzemiennie, np.: M -> C -> S -> M. Czasami są lekkie zaburzenia, ale one wynikają z samej natury działania wątków i procesów _(blokady, opóźnienia, sprzęt, planista, itp.)_.
 
@@ -40,4 +40,4 @@ Na samym początku symulacji można zauważyć identyczne zachowanie jak w pierw
 
 # Podsumowanie
 
-Implementacja semaforów dla problemu producentów i konsumentów jest poprawna i zapewnia bezpieczną synchronizację ze spełnionymi założeniami sekcji krytycznej.
+Implementacja monitorów dla problemu producentów i konsumentów jest poprawna i zapewnia bezpieczną synchronizację ze spełnionymi założeniami sekcji krytycznej.

@@ -1,0 +1,76 @@
+Simulation starts. Buffors sizes: 3
+All threads running. We work for 10 seconds..
+Producer 1: produced dough nr 0, D
+[IN BUFFOR] D nr 0 put in buffor
+Producer 2: produced meat nr 0, M
+[IN BUFFOR] M nr 0 put in buffor
+Making pierog with M; (dough id: 0, filling id 0)
+Producer 3: produced cabbage nr 0, C
+[IN BUFFOR] C nr 0 put in buffor
+Producer 4: produced cheese nr 0, S
+[IN BUFFOR] S nr 0 put in buffor
+Producer 1: produced dough nr 1, D
+[IN BUFFOR] D nr 1 put in buffor
+Making pierog with C; (dough id: 1, filling id 0)
+Producer 2: produced meat nr 1, M
+[IN BUFFOR] M nr 1 put in buffor
+Producer 3: produced cabbage nr 1, C
+[IN BUFFOR] C nr 1 put in buffor
+Producer 4: produced cheese nr 1, S
+[IN BUFFOR] S nr 1 put in buffor
+Producer 1: produced dough nr 2, D
+[IN BUFFOR] D nr 2 put in buffor
+Making pierog with S; (dough id: 2, filling id 0)
+Producer 2: produced meat nr 2, M
+[IN BUFFOR] M nr 2 put in buffor
+Producer 3: produced cabbage nr 2, C
+[IN BUFFOR] C nr 2 put in buffor
+Producer 4: produced cheese nr 2, S
+[IN BUFFOR] S nr 2 put in buffor
+Producer 1: produced dough nr 3, D
+[IN BUFFOR] D nr 3 put in buffor
+Producer 2: produced meat nr 3, M
+[IN BUFFOR] M nr 3 put in buffor
+Making pierog with M; (dough id: 3, filling id 1)
+Producer 3: produced cabbage nr 3, C
+[IN BUFFOR] C nr 3 put in buffor
+Producer 4: produced cheese nr 3, S
+[IN BUFFOR] S nr 3 put in buffor
+Producer 1: produced dough nr 4, D
+[IN BUFFOR] D nr 4 put in buffor
+Making pierog with C; (dough id: 4, filling id 1)
+Producer 2: produced meat nr 4, M
+[IN BUFFOR] M nr 4 put in buffor
+Producer 3: produced cabbage nr 4, C
+[IN BUFFOR] C nr 4 put in buffor
+Producer 4: produced cheese nr 4, S
+[IN BUFFOR] S nr 4 put in buffor
+Producer 1: produced dough nr 5, D
+[IN BUFFOR] D nr 5 put in buffor
+Producer 2: produced meat nr 5, M
+[IN BUFFOR] M nr 5 put in buffor
+Making pierog with S; (dough id: 5, filling id 1)
+Producer 3: produced cabbage nr 5, C
+Producer 4: produced cheese nr 5, S
+[IN BUFFOR] C nr 5 put in buffor
+Producer 1: produced dough nr 6, D
+[IN BUFFOR] D nr 6 put in buffor
+Producer 2: produced meat nr 6, M
+Making pierog with M; (dough id: 6, filling id 2)
+Producer 3: produced cabbage nr 6, C
+Producer 1: produced dough nr 7, D
+[IN BUFFOR] D nr 7 put in buffor
+Making pierog with S; (dough id: 7, filling id 2)
+[IN BUFFOR] S nr 5 put in buffor
+Producer 1: produced dough nr 8, D
+[IN BUFFOR] D nr 8 put in buffor
+[IN BUFFOR] M nr 6 put in buffor
+Making pierog with C; (dough id: 8, filling id 2)
+Producer 4: produced cheese nr 6, S
+[IN BUFFOR] S nr 6 put in buffor
+Producer 2: produced meat nr 7, M
+Producer 1: produced dough nr 9, D
+[IN BUFFOR] D nr 9 put in buffor
+Making pierog with M; (dough id: 9, filling id 3)
+
+End of simulation! Closing threads.
