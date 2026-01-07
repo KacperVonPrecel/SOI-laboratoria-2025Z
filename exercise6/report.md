@@ -33,14 +33,14 @@ Innym problemem, który ma realny wpływ na wykorzystanie dostępnej przestrzeni
 ## Testy implementacji
 
 W ramach przetestowania działania systemu plików napisałem skrypt w shellu __test.sh__ testujący pokolei następujące elementy:
-    * utworzenie dysku wirtualnego
-    * utworzenie paru plików o różnych rozmiarach
-    * kopiowanie każdego z nich na dysk
-    * próba ponownego skopiowania pliku, który już jest na dysku
-    * usunięcie pliku, tworząc dziurę na dysku
-    * próba zapisu zbyt dużego pliku na miejsce usuniętego (fragmentacja pamięci)
-    * skopiowanie pliku z dysku wirtualnego na dysk lokalny
-    * usunięcię dysku wirtualnego
+    + utworzenie dysku wirtualnego
+    + utworzenie paru plików o różnych rozmiarach
+    + kopiowanie każdego z nich na dysk
+    + próba ponownego skopiowania pliku, który już jest na dysku
+    + usunięcie pliku, tworząc dziurę na dysku
+    + próba zapisu zbyt dużego pliku na miejsce usuniętego (fragmentacja pamięci)
+    + skopiowanie pliku z dysku wirtualnego na dysk lokalny
+    + usunięcię dysku wirtualnego
 
 W celu utworzenia plików testowych napisałem program w C, który tworzy plik o podanej nazwie i rozmiarze, zapełniając go zerami. Rozwiązanie z komendą _dd if=/dev/null ..._ nie działa na MINIX-e.
 
